@@ -1,0 +1,23 @@
+{
+  "name": "pixelated",
+  "version": "0.0.1",
+  "description": "Turn pixel art pngs to svgs with optimizing options, retaining original color and alpha channel.",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite serve demo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessuni/pixelated.git"
+  },
+  "author": "Jessie Ji <jessunix@gmail.com> (https://jessieji.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jessuni/pixelated/issues"
+  },
+  "homepage": "https://github.com/jessuni/pixelated#readme",
+  "dependencies": {
+    "svgo": "^2.8.0",
+    "vite": "^3.0.0"
+  }
+}
