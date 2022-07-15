@@ -2,7 +2,7 @@ import genSVG from '../'
 
 function setupCanvas() {
   const markup = document.getElementById('markup')
-  const svg = document.getElementById('preview')
+  const container = document.getElementById('container')
   markup.addEventListener('focus', (e) => {
     e.target.select()
   })
@@ -17,15 +17,14 @@ function setupCanvas() {
       const imgEl = new Image()
       imgEl.onload = function () {
         ctx.drawImage(imgEl, 0, 0)
-        const svgEl = genSVG(
+        const svgText = genSVG(
           imgEl.width,
           imgEl.height,
           ctx.getImageData(0, 0, imgEl.width, imgEl.height),
           true
         )
-        svg.setAttribute('viewBox', svgEl.getAttribute('viewBox'))
-        svg.innerHTML = svgEl.innerHTML
-        markup.value = svgEl.outerHTML
+        container.innerHTML = svgText
+        markup.value = svgText
       }
       imgEl.src = e.target.result
     }

@@ -1,8 +1,8 @@
-// import svgo from 'svgo'
+import { optimize } from 'svgo/dist/svgo.browser'
 import { hslToHex, rgbToHsl, rgbToHex } from './utils'
 
 
-function genSVG(width = 0, height = 0, imgData = {}, greyscale = true) {
+function genSVG(width = 0, height = 0, imgData = {}, greyscale = true, svgo = true) {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
   svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`)
@@ -46,7 +46,30 @@ function genSVG(width = 0, height = 0, imgData = {}, greyscale = true) {
     }
   }
 
-  return svg
+  if (svgo) {
+    const { data, error } = optimize(svg.outerHTML, {
+      multipass: true,
+      plugins: [
+        {
+          name: 'preset-default',
+          params: {
+            overrides: {
+              removeViewBox: false,
+              convertColors: false,
+            },
+          },
+        },
+      ],
+      js2svg: {
+        indent: 2,
+        pretty: false,
+      },
+    })
+    if (error) throw new Error(error)
+    return data
+  }
+
+  return svg.outerHTML
 }
 
 export default genSVG
