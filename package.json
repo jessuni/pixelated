@@ -4,7 +4,8 @@
   "description": "Turn pixel art pngs to svgs with optimizing options, retaining original color and alpha channel.",
   "main": "index.js",
   "scripts": {
-    "start": "vite serve demo"
+    "start": "vite serve demo",
+    "build": "vite build demo --outDir ./dist"
   },
   "repository": {
     "type": "git",
