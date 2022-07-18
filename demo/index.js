@@ -16,6 +16,7 @@ function setupCanvas() {
     reader.onload = function (e) {
       const imgEl = new Image()
       imgEl.onload = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(imgEl, 0, 0)
         const svgText = genSVG(
           imgEl.width,
